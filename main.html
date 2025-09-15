@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayoub Aitabderrahmane</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: "Lato", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #F5EFE6;
+      color: #19183B;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #e5ecf4, #E8DFCA);
+      text-align: center;
+      padding: 4rem 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-size: 2.7rem;
+      margin-bottom: 0.5rem;
+      color: #2a4d69;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem 1.5rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.2s; }
+    section:nth-of-type(2) { animation-delay: 0.4s; }
+    section:nth-of-type(3) { animation-delay: 0.6s; }
+    section:nth-of-type(4) { animation-delay: 0.8s; }
+    section:nth-of-type(5) { animation-delay: 1s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      color: #2a4d69;
+      margin-bottom: 1rem;
+      border-left: 4px solid #2a4d69;
+      padding-left: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #2a4d69;
+      font-weight: bold;
+    }
+
+    .contact a {
+      color: #6D94C5;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact a:hover {
+      color: darkblue;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ayoub Aitabderrahmane</h1>
+    <p>Student at 1337</p>
+  </header>
+
+  <section>
+    <h2>About</h2>
+    <p>
+      I’m Ayoub, a student at 1337 school passionate about programming and technology. 
+      I enjoy building projects that challenge me to think logically and creatively. 
+      My goal is to keep learning, improving, and contributing to meaningful work.
+    </p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul>
+      <li>Programming in C, C++, Python, JavaScript</li>
+      <li>Web Development: HTML, CSS, React</li>
+      <li>Problem Solving & Algorithms</li>
+      <li>Video Editing & Creative Projects</li>
+      <li>Fluent English (C1 Level)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <p><strong>Video Editor @YourVideo</strong> — Worked on creative projects for different clients, 
+    delivering clean and engaging content tailored to their vision.</p>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <p>Currently studying at <strong>1337 School</strong>, part of the 42 Network, 
+    where I focus on low-level programming, algorithms, and real-world projects.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:aaitabdarrahman@gmail.com">aaitabdarrahman@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/ayoub-aitabderrahmane-88a7a22a7/" target="_blank">Visit my LinkedIn</a></p>
+  </section>
+</body>
+</html>
