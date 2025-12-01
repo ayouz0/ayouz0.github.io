@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar Diafa | Moroccan Cuisine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { serif: ['Amiri', 'serif'], sans: ['Noto Kufi Arabic', 'sans-serif'] },
+                    colors: { clay: '#78350f', sand: '#fdf6e3', gold: '#b45309' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-sand text-clay font-serif">
+    
+    <!-- Pattern Overlay -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');"></div>
+
+    <!-- Header -->
+    <header class="relative z-10 text-center py-10 border-b border-gold/20">
+        <h1 class="text-5xl font-bold mb-2">دار الضيافة</h1>
+        <p class="font-sans text-gold">الأصالة المغربية في كل طبق</p>
+    </header>
+
+    <!-- Hero Image -->
+    <div class="relative h-96 w-full">
+        <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-sand to-transparent"></div>
+    </div>
+
+    <!-- Menu Content -->
+    <main class="relative z-10 max-w-3xl mx-auto px-6 -mt-24 pb-20">
+        <div class="bg-white p-8 md:p-12 shadow-2xl rounded-lg border border-gold/20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold inline-block border-b-2 border-gold pb-2">قائمة الطعام</h2>
+            </div>
+
+            <!-- Category: Tagines -->
+            <div class="mb-10">
+                <h3 class="text-2xl font-bold text-gold mb-6 flex items-center gap-3">
+                    <i class="fas fa-utensils"></i> الطواجن
+                </h3>
+                <div class="space-y-6">
+                    <!-- Item -->
+                    <div class="flex justify-between items-start border-b border-dotted border-gold/30 pb-4">
+                        <div>
+                            <h4 class="font-bold text-xl mb-1">طاجين اللحم بالبرقوق</h4>
+                            <p class="font-sans text-gray-500 text-sm">لحم غنمي ممتاز، برقوق معسل، لوز مقلي.</p>
+                        </div>
+                        <span class="font-bold text-xl mr-4 whitespace-nowrap">85 د.م</span>
+                    </div>
+                    <!-- Item -->
+                    <div class="flex justify-between items-start border-b border-dotted border-gold/30 pb-4">
+                        <div>
+                            <h4 class="font-bold text-xl mb-1">طاجين الدجاج البلدي</h4>
+                            <p class="font-sans text-gray-500 text-sm">دجاج بلدي، زيتون مسلالة، حامض مصير.</p>
+                        </div>
+                        <span class="font-bold text-xl mr-4 whitespace-nowrap">75 د.م</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Couscous -->
+            <div class="mb-10">
+                <h3 class="text-2xl font-bold text-gold mb-6 flex items-center gap-3">
+                    <i class="fas fa-circle"></i> الكسكس (الجمعة فقط)
+                </h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start border-b border-dotted border-gold/30 pb-4">
+                        <div>
+                            <h4 class="font-bold text-xl mb-1">كسكس سبع خضاري</h4>
+                            <p class="font-sans text-gray-500 text-sm">سميد رقيق، خضار موسمية طازجة.</p>
+                        </div>
+                        <span class="font-bold text-xl mr-4 whitespace-nowrap">60 د.م</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="w-full bg-clay text-white font-sans font-bold py-4 rounded-lg hover:bg-gold transition duration-300">
+                حجز طاولة عبر واتساب
+            </button>
+        </div>
+    </main>
+
+</body>
+</html>

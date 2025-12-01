@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIN. | Minimalist Beauty</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&family=Tenor+Sans&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'darija': ['Readex Pro', 'sans-serif'],
+                        'latin-heading': ['Tenor Sans', 'sans-serif'],
+                        'latin-body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sand': '#F9F9F9',
+                        'clay': '#C2B280',
+                        'black': '#1a1a1a',
+                        'charcoal': '#4a4a4a'
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FAFAFA; color: #1a1a1a; font-family: 'Readex Pro', sans-serif; }
+        html[lang="fr"] body { font-family: 'Inter', sans-serif; letter-spacing: -0.01em; }
+        html[lang="fr"] h1, html[lang="fr"] h2, html[lang="fr"] h3, html[lang="fr"] .font-display { font-family: 'Tenor Sans', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .hover-line { position: relative; }
+        .hover-line::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #1a1a1a; transition: width 0.3s ease; }
+        .hover-line:hover::after { width: 100%; }
+        .img-reveal-container { overflow: hidden; }
+        .img-reveal-container img { transform: scale(1.1); transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .img-reveal-container:hover img { transform: scale(1); }
+    </style>
+</head>
+<body class="antialiased selection:bg-clay selection:text-white overflow-x-hidden">
+
+    <div class="bg-black text-white py-2 overflow-hidden whitespace-nowrap">
+        <div class="inline-flex gap-8 animate-marquee">
+            <span class="text-[10px] tracking-widest uppercase">التوصيل فابور في المغرب ابتداء من 400 درهم  ✦  LIVRAISON GRATUITE AU MAROC DÈS 400 DH  ✦  التوصيل فابور في المغرب ابتداء من 400 درهم  ✦  LIVRAISON GRATUITE AU MAROC DÈS 400 DH</span>
+            <span class="text-[10px] tracking-widest uppercase">التوصيل فابور في المغرب ابتداء من 400 درهم  ✦  LIVRAISON GRATUITE AU MAROC DÈS 400 DH  ✦  التوصيل فابور في المغرب ابتداء من 400 درهم  ✦  LIVRAISON GRATUITE AU MAROC DÈS 400 DH</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-40 bg-[#FAFAFA]/80 backdrop-blur-md transition-all duration-300 py-6 border-b border-transparent" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            
+            <button onclick="toggleMobileMenu()" class="md:hidden text-lg">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <a href="#" class="text-3xl font-bold tracking-tighter z-50 font-display">ZIN.</a>
+
+            <div class="hidden md:flex gap-12 text-sm font-medium text-gray-500">
+                <a href="#shop" class="hover:text-black transition hover-line" data-key="nav_shop">المنتوجات</a>
+                <a href="#philosophy" class="hover:text-black transition hover-line" data-key="nav_phil">فلسفتنا</a>
+                <a href="#ingredients" class="hover:text-black transition hover-line" data-key="nav_ing">المكونات</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button onclick="toggleLang()" class="text-xs font-bold hover:text-clay transition uppercase tracking-widest">
+                    <span id="current-lang">FR</span>
+                </button>
+                <button onclick="openCart()" class="relative group">
+                    <span class="absolute -top-1.5 -right-1.5 flex h-2.5 w-2.5">
+                        <span id="cart-dot" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-clay opacity-0"></span>
+                        <span id="cart-badge" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-clay opacity-0"></span>
+                    </span>
+                    <span class="text-xs font-bold uppercase tracking-widest group-hover:text-clay transition" data-key="nav_cart">السلة</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-30 transform translate-y-full transition-transform duration-500 flex flex-col justify-center items-center text-center space-y-8 md:hidden">
+        <a href="#shop" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold" data-key="nav_shop">المنتوجات</a>
+        <a href="#philosophy" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold" data-key="nav_phil">فلسفتنا</a>
+        <a href="#ingredients" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold" data-key="nav_ing">المكونات</a>
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-2xl"><i class="fas fa-times"></i></button>
+    </div>
+
+    <header class="pt-20 pb-16 px-6 md:px-12 min-h-[90vh] flex items-center">
+        <div class="max-w-7xl mx-auto w-full grid md:grid-cols-12 gap-12 items-center">
+            <div class="order-2 md:order-1 md:col-span-5 animate-fade-up">
+                <span class="text-clay font-medium tracking-[0.2em] text-[10px] uppercase mb-6 block" data-key="hero_tag">مستحضرات مغربية أصيلة</span>
+                <h1 class="text-5xl md:text-7xl font-bold leading-[1.05] mb-8 font-display" data-key="hero_title">
+                    الطبيعة.<br>النقاوة.<br><span class="text-gray-300">الأصل.</span>
+                </h1>
+                <p class="text-base text-gray-500 mb-10 max-w-sm leading-relaxed font-light" data-key="hero_desc">
+                    وصفات جداتنا، بتقنيات عصرية. عناية حقيقية جاية من قلب الأطلس، بلا مواد حافظة، بلا تعقيدات.
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="#shop" class="bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-clay transition duration-300" data-key="btn_shop">
+                        اكتشفي المجموعة
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 md:col-span-7 h-[500px] md:h-[700px] relative img-reveal-container">
+                <img src="https://images.unsplash.com/photo-1584013544071-caee786e105b?q=80&w=1560&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover grayscale-[10%]" alt="Argan Origin">
+            </div>
+        </div>
+    </header>
+
+    <section id="shop" class="py-24 px-6 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <h2 class="text-3xl md:text-5xl font-bold font-display" data-key="shop_title">المختارات</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-[#F5F5F5] mb-6 relative img-reveal-container">
+                        <img src="https://plus.unsplash.com/premium_photo-1674739375749-7efe56fc8bbb?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1287&auto=format&fit=crop" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <button onclick="addToCart('Sérum Nila Royal', 200, 'https://plus.unsplash.com/premium_photo-1674739375749-7efe56fc8bbb?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=200')" class="bg-white text-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition transform translate-y-4 group-hover:translate-y-0 duration-300" data-key="add_btn">زيدي للسلة</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg font-display" data-key="p1_name">سيروم النيلة الملكي</h3>
+                            <span class="text-xs font-medium">200 DH</span>
+                        </div>
+                        <p class="text-gray-400 text-xs" data-key="p1_desc">إشراقة فورية وتوحيد اللون</p>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer md:mt-16">
+                    <div class="aspect-[3/4] bg-[#F5F5F5] mb-6 relative img-reveal-container">
+                         <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1287&auto=format&fit=crop" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                             <button onclick="addToCart('Eau de Rose Bio', 90, 'https://images.unsplash.com/photo-1585543062279-95707852637e?w=200')" class="bg-white text-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition transform translate-y-4 group-hover:translate-y-0 duration-300" data-key="add_btn">زيدي للسلة</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg font-display" data-key="p2_name">ماء الورد المقطر</h3>
+                            <span class="text-xs font-medium">90 DH</span>
+                        </div>
+                        <p class="text-gray-400 text-xs" data-key="p2_desc">ترطيب وانتعاش من قلعة مكونة</p>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-[#F5F5F5] mb-6 relative img-reveal-container">
+                         <img src="https://plus.unsplash.com/premium_photo-1679064286787-143237eb97c6?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1287&auto=format&fit=crop" class="w-full h-full object-cover">
+                         <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                             <button onclick="addToCart('Ghassoul Atlas', 120, 'https://plus.unsplash.com/premium_photo-1679064286787-143237eb97c6?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=200')" class="bg-white text-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition transform translate-y-4 group-hover:translate-y-0 duration-300" data-key="add_btn">زيدي للسلة</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg font-display" data-key="p3_name">غسول الأطلس</h3>
+                            <span class="text-xs font-medium">120 DH</span>
+                        </div>
+                        <p class="text-gray-400 text-xs" data-key="p3_desc">ديتوكس عميق للبشرة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-sand overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+            <h2 class="text-2xl font-display font-bold" data-key="reviews_title">آراء الزبائن</h2>
+        </div>
+        <div class="flex gap-6 animate-marquee hover:[animation-play-state:paused]">
+            <div class="min-w-[300px] bg-white p-8 border border-gray-100 shadow-sm">
+                <div class="flex text-clay mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-sm text-gray-600 mb-4 leading-relaxed">"J'adore le sérum Nila! Ma peau est tellement plus lumineuse. Merci ZIN."</p>
+                <p class="text-xs font-bold uppercase tracking-widest">- Sarah K.</p>
+            </div>
+            <div class="min-w-[300px] bg-white p-8 border border-gray-100 shadow-sm">
+                <div class="flex text-clay mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-sm text-gray-600 mb-4 leading-relaxed">"أحسن ماء ورد جربت فحياتي. الريحة طبيعية 100%."</p>
+                <p class="text-xs font-bold uppercase tracking-widest">- Amina B.</p>
+            </div>
+            <div class="min-w-[300px] bg-white p-8 border border-gray-100 shadow-sm">
+                <div class="flex text-clay mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-sm text-gray-600 mb-4 leading-relaxed">"Minimaliste et efficace. Le Ghassoul est top."</p>
+                <p class="text-xs font-bold uppercase tracking-widest">- Kenza M.</p>
+            </div>
+             <div class="min-w-[300px] bg-white p-8 border border-gray-100 shadow-sm">
+                <div class="flex text-clay mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-sm text-gray-600 mb-4 leading-relaxed">"J'adore le sérum Nila! Ma peau est tellement plus lumineuse. Merci ZIN."</p>
+                <p class="text-xs font-bold uppercase tracking-widest">- Sarah K.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="py-24 bg-[#F3F3F3]">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1 relative h-[500px] img-reveal-container">
+                <img src="https://images.unsplash.com/photo-1581182830442-e8bc7babbf15?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover grayscale-[20%]">
+            </div>
+            <div class="order-1 md:order-2">
+                <span class="text-clay font-medium tracking-[0.2em] text-[10px] uppercase mb-8 block" data-key="story_tag">فلسفتنا</span>
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8 font-display" data-key="story_title">
+                    الزين الحقيقي<br>كيبغي البساطة.
+                </h2>
+                <p class="text-gray-500 font-light text-lg mb-8 leading-relaxed" data-key="story_text">
+                    فـ "زين"، ما كنبيعوش الوهم. كنبيعو منتجات نقية، مكونات معروفة، ومصايبة بحب. البشرة ديالك محتاجة التغذية، ماشي الكيمياء.
+                </p>
+                <div class="flex gap-12 border-t border-gray-300 pt-8">
+                    <div>
+                        <span class="block text-3xl font-display mb-1">100%</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-400" data-key="stat_1">طبيعي</span>
+                    </div>
+                    <div>
+                        <span class="block text-3xl font-display mb-1">0%</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-400" data-key="stat_2">مواد حافظة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#1a1a1a] text-white pt-20 pb-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center md:text-right">
+            <div class="md:col-span-1">
+                <h2 class="text-5xl font-bold font-display mb-8">ZIN.</h2>
+                <p class="text-gray-500 text-xs leading-relaxed max-w-xs mx-auto md:mx-0">
+                    ماركة مغربية كتحتفل بالجمال الطبيعي. وصفات قديمة في حلة جديدة.
+                </p>
+            </div>
+            <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">TikTok</a>
+                <a href="#" class="hover:text-white transition">Contact</a>
+            </div>
+            <div class="text-xs text-gray-500">
+                <p class="mb-4 uppercase tracking-widest">Inscrivez-vous à la newsletter</p>
+                <div class="flex border-b border-gray-600 pb-2">
+                    <input type="email" placeholder="Email" class="bg-transparent w-full outline-none text-white placeholder-gray-600">
+                    <button class="text-white hover:text-clay transition">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-16">
+            <p class="text-[10px] text-gray-700 uppercase tracking-widest">&copy; 2024 ZIN Cosmetics. Casablanca.</p>
+        </div>
+    </footer>
+
+    <div id="cart-overlay" onclick="closeCart()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="cart-drawer" class="fixed inset-y-0 bg-white w-full md:w-[450px] z-[60] shadow-2xl flex flex-col transform transition-transform duration-500">
+        <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-white">
+            <h3 class="font-bold text-xl font-display" data-key="cart_title">سلة المشتريات</h3>
+            <button onclick="closeCart()" class="text-gray-400 hover:text-black transition"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-8" id="cart-items-container">
+            <div id="empty-cart" class="h-full flex flex-col items-center justify-center text-gray-300 space-y-4">
+                <p class="font-display text-4xl italic">Vide</p>
+                <p class="text-xs uppercase tracking-widest" data-key="cart_empty">السلة خاوية</p>
+            </div>
+            <div id="cart-list" class="space-y-6 hidden"></div>
+        </div>
+        <div class="p-8 border-t border-gray-100 bg-gray-50">
+            <div class="flex justify-between mb-6 font-display text-xl">
+                <span data-key="total">المجموع</span>
+                <span id="cart-total-price">0 DH</span>
+            </div>
+            <button class="w-full bg-black text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-clay transition duration-300" data-key="checkout_btn">دوزي لاكوموند</button>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 md:left-10 md:translate-x-0 bg-[#1a1a1a] text-white px-6 py-4 z-[70] flex items-center gap-4 shadow-xl translate-y-32 transition-transform duration-500 rounded-sm">
+        <div class="w-8 h-8 bg-gray-700 overflow-hidden">
+            <img id="toast-img" src="" class="w-full h-full object-cover">
+        </div>
+        <div>
+            <p class="text-[10px] uppercase tracking-widest text-gray-400">Added to cart</p>
+            <p id="toast-text" class="text-xs font-bold font-display"></p>
+        </div>
+    </div>
+
+    <script>
+        // --- TRANSLATION DATA ---
+        const translations = {
+            ar: {
+                nav_shop: "المنتوجات",
+                nav_phil: "فلسفتنا",
+                nav_ing: "المكونات",
+                nav_cart: "السلة",
+                hero_tag: "مستحضرات مغربية أصيلة",
+                hero_title: "الطبيعة.<br>النقاوة.<br><span class='text-gray-300'>الأصل.</span>",
+                hero_desc: "وصفات جداتنا، بتقنيات عصرية. عناية حقيقية جاية من قلب الأطلس، بلا مواد حافظة، بلا تعقيدات.",
+                btn_shop: "اكتشفي المجموعة",
+                hero_card: "زيت أركان عضوي",
+                shop_title: "المختارات",
+                view_all: "شوفي كلشي",
+                p1_name: "سيروم النيلة الملكي",
+                p1_desc: "إشراقة فورية وتوحيد اللون",
+                p2_name: "ماء الورد المقطر",
+                p2_desc: "ترطيب وانتعاش من قلعة مكونة",
+                p3_name: "غسول الأطلس",
+                p3_desc: "ديتوكس عميق للبشرة",
+                add_btn: "زيدي للسلة",
+                story_tag: "فلسفتنا",
+                story_title: "الزين الحقيقي<br>كيبغي البساطة.",
+                story_text: "فـ 'زين'، ما كنبيعوش الوهم. كنبيعو منتجات نقية، مكونات معروفة، ومصايبة بحب. البشرة ديالك محتاجة التغذية، ماشي الكيمياء.",
+                stat_1: "طبيعي",
+                stat_2: "مواد حافظة",
+                cart_title: "سلة المشتريات",
+                cart_empty: "السلة خاوية",
+                total: "المجموع",
+                checkout_btn: "دوزي لاكوموند",
+                reviews_title: "آراء الزبائن"
+            },
+            fr: {
+                nav_shop: "Produits",
+                nav_phil: "Philosophie",
+                nav_ing: "Ingrédients",
+                nav_cart: "PANIER",
+                hero_tag: "Cosmétiques Marocains Authentiques",
+                hero_title: "Nature.<br>Pureté.<br><span class='text-gray-300'>Origine.</span>",
+                hero_desc: "Recettes ancestrales, techniques modernes. Un soin véritable venu du cœur de l'Atlas, sans conservateurs, sans artifices.",
+                btn_shop: "DÉCOUVRIR LA COLLECTION",
+                hero_card: "HUILE D'ARGAN BIO",
+                shop_title: "Sélection",
+                view_all: "VOIR TOUT",
+                p1_name: "Sérum Nila Royal",
+                p1_desc: "Éclat instantané et unification",
+                p2_name: "Eau de Rose Distillée",
+                p2_desc: "Hydratation fraîche de Kelaat M'Gouna",
+                p3_name: "Ghassoul de l'Atlas",
+                p3_desc: "Détox profond pour la peau",
+                add_btn: "AJOUTER AU PANIER",
+                story_tag: "PHILOSOPHIE",
+                story_title: "La Vraie Beauté<br>Aime la Simplicité.",
+                story_text: "Chez ZIN, nous ne vendons pas d'illusions. Nous vendons des produits purs, des ingrédients traçables, faits avec amour. Votre peau a besoin de nutrition, pas de chimie.",
+                stat_1: "NATUREL",
+                stat_2: "CONSERVATEURS",
+                cart_title: "Votre Panier",
+                cart_empty: "Votre panier est vide",
+                total: "TOTAL",
+                checkout_btn: "PASSER LA COMMANDE",
+                reviews_title: "Avis Clients"
+            }
+        };
+
+        // --- STATE & INIT ---
+        let lang = 'ar';
+        let cart = [];
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function setDrawerPosition() {
+            if(lang === 'ar') {
+                drawer.classList.add('left-0', '-translate-x-full');
+                drawer.classList.remove('right-0', 'translate-x-full');
+            } else {
+                drawer.classList.add('right-0', 'translate-x-full');
+                drawer.classList.remove('left-0', '-translate-x-full');
+            }
+        }
+        setDrawerPosition();
+
+        // --- FUNCTIONS ---
+        function toggleLang() {
+            lang = lang === 'ar' ? 'fr' : 'ar';
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('current-lang').innerText = lang === 'ar' ? 'FR' : 'AR';
+            
+            document.querySelectorAll('[data-key]').forEach(el => {
+                el.classList.add('opacity-0');
+                setTimeout(() => {
+                    const key = el.getAttribute('data-key');
+                    if(translations[lang][key]) el.innerHTML = translations[lang][key];
+                    el.classList.remove('opacity-0');
+                }, 200);
+            });
+
+            if(!drawer.classList.contains('-translate-x-full') && !drawer.classList.contains('translate-x-full')) {
+                closeCart();
+            }
+            setTimeout(setDrawerPosition, 300);
+        }
+
+        function toggleMobileMenu() {
+            if (mobileMenu.classList.contains('translate-y-full')) {
+                mobileMenu.classList.remove('translate-y-full');
+            } else {
+                mobileMenu.classList.add('translate-y-full');
+            }
+        }
+
+        function openCart() {
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            if(lang === 'ar') drawer.classList.remove('-translate-x-full');
+            else drawer.classList.remove('translate-x-full');
+        }
+
+        function closeCart() {
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            if(lang === 'ar') drawer.classList.add('-translate-x-full');
+            else drawer.classList.add('translate-x-full');
+        }
+
+        function showToast(name, img) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = name;
+            document.getElementById('toast-img').src = img;
+            
+            toast.classList.remove('translate-y-32');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32');
+            }, 3000);
+        }
+
+        function addToCart(name, price, img) {
+            cart.push({name, price, img});
+            updateCartUI();
+            showToast(name, img);
+            document.getElementById('cart-dot').classList.remove('opacity-0');
+            document.getElementById('cart-badge').classList.remove('opacity-0');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+            if(cart.length === 0) {
+                document.getElementById('cart-dot').classList.add('opacity-0');
+                document.getElementById('cart-badge').classList.add('opacity-0');
+            }
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-list');
+            const empty = document.getElementById('empty-cart');
+            const totalEl = document.getElementById('cart-total-price');
+
+            if(cart.length === 0) {
+                list.classList.add('hidden');
+                empty.classList.remove('hidden');
+                totalEl.innerText = "0 DH";
+                return;
+            }
+
+            list.classList.remove('hidden');
+            empty.classList.add('hidden');
+
+            let total = 0;
+            list.innerHTML = cart.map((item, i) => {
+                total += item.price;
+                return `
+                <div class="flex gap-4 items-start animate-fade-up" style="animation-duration: 0.3s">
+                    <div class="w-16 h-20 bg-gray-100 overflow-hidden">
+                        <img src="${item.img}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between h-20 py-1">
+                        <div>
+                            <p class="font-display font-bold text-sm leading-none mb-1">${item.name}</p>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest">1 Unit</p>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <p class="text-xs font-bold">${item.price} DH</p>
+                            <button onclick="removeFromCart(${i})" class="text-[10px] uppercase text-gray-400 hover:text-red-500 transition">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = total + " DH";
+        }
+    </script>
+</body>
+</html>

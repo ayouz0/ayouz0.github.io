@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRIP.MA | Streetwear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Oswald', 'sans-serif'] },
+                    colors: { neon: '#00FFA3' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .marquee { animation: scroll 20s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+    </style>
+</head>
+<body class="bg-black text-white font-sans uppercase">
+    
+    <!-- Ticker -->
+    <div class="bg-neon text-black overflow-hidden py-2 font-bold tracking-widest text-sm">
+        <div class="marquee whitespace-nowrap">
+            FREE SHIPPING ON ALL ORDERS /// NEW DROP FRIDAY /// CASH ON DELIVERY /// DRIP OR DROWN /// FREE SHIPPING ON ALL ORDERS /// NEW DROP FRIDAY
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="border-b border-zinc-800 p-6 flex justify-between items-center sticky top-0 bg-black/90 backdrop-blur z-50">
+        <div class="text-3xl font-bold italic tracking-tighter">DRIP<span class="text-neon">.MA</span></div>
+        <div class="flex gap-6 text-xl">
+            <i class="fas fa-search hover:text-neon cursor-pointer transition"></i>
+            <i class="fas fa-shopping-cart hover:text-neon cursor-pointer transition"></i>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale">
+        <div class="relative z-10 text-center mix-blend-difference">
+            <h1 class="text-[8rem] md:text-[12rem] leading-none font-bold italic">FUTURE<br>VISION</h1>
+            <button class="mt-8 border-2 border-white px-12 py-4 text-2xl hover:bg-white hover:text-black transition duration-300">Shop Collection</button>
+        </div>
+    </header>
+
+    <!-- Grid -->
+    <section class="grid md:grid-cols-2 gap-1 bg-zinc-900 p-1">
+        <!-- Item 1 -->
+        <div class="relative h-[600px] group overflow-hidden bg-black">
+            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
+            <div class="absolute bottom-0 left-0 p-8">
+                <h3 class="text-4xl font-bold italic mb-2">Oversized Hoodie</h3>
+                <p class="text-neon text-2xl font-bold">299 DH</p>
+                <button class="mt-4 bg-neon text-black px-6 py-2 font-bold opacity-0 group-hover:opacity-100 transition-opacity">Add to Cart</button>
+            </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="relative h-[600px] group overflow-hidden bg-black">
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
+            <div class="absolute bottom-0 left-0 p-8">
+                <h3 class="text-4xl font-bold italic mb-2">Retro Sneakers</h3>
+                <p class="text-neon text-2xl font-bold">450 DH</p>
+                <button class="mt-4 bg-neon text-black px-6 py-2 font-bold opacity-0 group-hover:opacity-100 transition-opacity">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
