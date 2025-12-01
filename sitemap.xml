@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://webexp.me/</loc>
+    <lastmod>2024-01-15</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://webexp.me/demo_beldi.html</loc>
+    <lastmod>2024-01-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webexp.me/demo_cosmetics.html</loc>
+    <lastmod>2024-01-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webexp.me/demo_snack.html</loc>
+    <lastmod>2024-01-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webexp.me/demo_streetwear.html</loc>
+    <lastmod>2024-01-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>

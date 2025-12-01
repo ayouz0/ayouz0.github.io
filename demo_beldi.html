@@ -3,91 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dar Diafa | Moroccan Cuisine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;700&display=swap" rel="stylesheet">
+    <meta name="description" content="مغاربي - منتجات مغربية بلدية أصلية 100% من قلب الأطلس. عسل، أركان، زعفران والمزيد.">
+    <title>مغاربي | أصالة الأطلس</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZCZDPZ78J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6ZCZDPZ78J');
+        
+        // Track product clicks
+        function trackProductClick(productName, price) {
+            gtag('event', 'view_item', {
+                'event_category': 'ecommerce',
+                'event_label': productName,
+                'value': price,
+                'currency': 'MAD'
+            });
+            console.log('Product tracked:', productName, price);
+        }
+        
+        // Track WhatsApp order
+        function trackWhatsAppOrder(productName) {
+            gtag('event', 'begin_checkout', {
+                'event_category': 'ecommerce',
+                'event_label': productName + '_order'
+            });
+            console.log('Order initiated:', productName);
+        }
+    </script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { serif: ['Amiri', 'serif'], sans: ['Noto Kufi Arabic', 'sans-serif'] },
-                    colors: { clay: '#78350f', sand: '#fdf6e3', gold: '#b45309' }
+                    fontFamily: { 
+                        heading: ['El Messiri', 'sans-serif'], 
+                        body: ['Almarai', 'sans-serif'] 
+                    },
+                    colors: { 
+                        clay: '#5D2E18',
+                        sand: '#FAF9F6',
+                        gold: '#C58F30',
+                        leaf: '#3A5A40'
+                    },
+                    animation: { 'fade-in': 'fadeIn 0.8s ease-in-out' },
+                    keyframes: { 
+                        fadeIn: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
                 }
             }
         }
     </script>
-</head>
-<body class="bg-sand text-clay font-serif">
     
-    <!-- Pattern Overlay -->
+    <style>
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-in-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .product-card { transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .texture-bg { background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E"); }
+    </style>
+</head>
+<body class="bg-sand text-clay font-body antialiased">
+    
     <div class="fixed inset-0 opacity-5 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');"></div>
 
-    <!-- Header -->
-    <header class="relative z-10 text-center py-10 border-b border-gold/20">
-        <h1 class="text-5xl font-bold mb-2">دار الضيافة</h1>
-        <p class="font-sans text-gold">الأصالة المغربية في كل طبق</p>
+    <a href="https://wa.me/212601156422?text=السلام عليكم، بغيت نطلب منتجات مغربية بلدية" 
+       onclick="trackWhatsAppOrder('general_inquiry')"
+       class="fixed bottom-6 right-6 z-50 bg-green-600 text-white w-14 h-14 flex items-center justify-center rounded-2xl shadow-xl hover:bg-green-700 hover:scale-105 transition-all border-2 border-white">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <header class="relative z-10 text-center py-10 border-b border-gold/30 bg-white/90 backdrop-blur-sm">
+        <h1 class="font-heading text-6xl font-bold mb-1 text-clay tracking-wide">مغاربي</h1>
+        <p class="text-gold font-bold text-lg tracking-wider">أصالة الأطلس</p>
     </header>
 
-    <!-- Hero Image -->
-    <div class="relative h-96 w-full">
-        <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-t from-sand to-transparent"></div>
+    <div class="relative z-10 bg-clay text-sand py-8 px-4 border-b-4 border-gold">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center text-lg">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-leaf text-gold"></i>
+                <span class="font-light">100% بيولوجي وحر</span>
+            </div>
+            <div class="h-4 w-px bg-white/20 hidden md:block"></div>
+            <div class="flex items-center gap-3">
+                <i class="fas fa-shipping-fast text-gold"></i>
+                <span class="font-light">توصيل سريع لجميع المدن</span>
+            </div>
+            <div class="h-4 w-px bg-white/20 hidden md:block"></div>
+            <div class="flex items-center gap-3">
+                <i class="fas fa-phone-alt text-gold"></i>
+                <span class="font-bold font-heading text-2xl dir-ltr">06 12 34 56 78</span>
+            </div>
+        </div>
     </div>
 
-    <!-- Menu Content -->
-    <main class="relative z-10 max-w-3xl mx-auto px-6 -mt-24 pb-20">
-        <div class="bg-white p-8 md:p-12 shadow-2xl rounded-lg border border-gold/20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold inline-block border-b-2 border-gold pb-2">قائمة الطعام</h2>
-            </div>
+    <main class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+        <div class="text-center mb-20">
+            <h2 class="font-heading text-5xl font-bold text-clay mb-4">منتجاتنا المختارة</h2>
+            <div class="h-1 w-24 bg-gold mx-auto"></div>
+        </div>
 
-            <!-- Category: Tagines -->
-            <div class="mb-10">
-                <h3 class="text-2xl font-bold text-gold mb-6 flex items-center gap-3">
-                    <i class="fas fa-utensils"></i> الطواجن
-                </h3>
-                <div class="space-y-6">
-                    <!-- Item -->
-                    <div class="flex justify-between items-start border-b border-dotted border-gold/30 pb-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- PRODUCT 1: HONEY -->
+            <div class="product-card bg-white p-0 border border-gray-200 shadow-sm reveal texture-bg rounded-sm" onclick="trackProductClick('عسل أطلس الأصيل', 120)">
+                <div class="h-56 bg-orange-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative group">
+                    <i class="fas fa-jar text-7xl text-orange-800/80 group-hover:scale-110 transition-transform duration-500"></i>
+                    <div class="absolute top-4 left-4 bg-clay text-white text-xs px-2 py-1 font-bold rounded-sm">الأكثر مبيعاً</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-gray-800">عسل أطلس الأصيل</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">عسل طبيعي 100% من أزهار الأطلس، غني بالمعادن والفيتامينات. مفيد للصحة والمناعة.</p>
+                    <div class="flex justify-between items-end border-t border-dashed border-gray-300 pt-4">
                         <div>
-                            <h4 class="font-bold text-xl mb-1">طاجين اللحم بالبرقوق</h4>
-                            <p class="font-sans text-gray-500 text-sm">لحم غنمي ممتاز، برقوق معسل، لوز مقلي.</p>
+                            <span class="block text-xs text-gray-400 mb-1">الثمن</span>
+                            <span class="font-heading font-bold text-2xl text-clay">120 <span class="text-sm text-gray-500 font-body">د.م</span></span>
                         </div>
-                        <span class="font-bold text-xl mr-4 whitespace-nowrap">85 د.م</span>
-                    </div>
-                    <!-- Item -->
-                    <div class="flex justify-between items-start border-b border-dotted border-gold/30 pb-4">
-                        <div>
-                            <h4 class="font-bold text-xl mb-1">طاجين الدجاج البلدي</h4>
-                            <p class="font-sans text-gray-500 text-sm">دجاج بلدي، زيتون مسلالة، حامض مصير.</p>
-                        </div>
-                        <span class="font-bold text-xl mr-4 whitespace-nowrap">75 د.م</span>
+                        <a href="https://wa.me/212601156422?text=بغيت عسل أطلس الأصيل" 
+                           onclick="trackWhatsAppOrder('عسل أطلس الأصيل')" 
+                           class="bg-clay text-white px-6 py-2 font-bold hover:bg-gold transition-colors rounded-sm text-sm">
+                            أطلب الآن
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: Couscous -->
-            <div class="mb-10">
-                <h3 class="text-2xl font-bold text-gold mb-6 flex items-center gap-3">
-                    <i class="fas fa-circle"></i> الكسكس (الجمعة فقط)
-                </h3>
-                <div class="space-y-6">
-                    <div class="flex justify-between items-start border-b border-dotted border-gold/30 pb-4">
+            <!-- PRODUCT 2: ARGAN OIL -->
+            <div class="product-card bg-white p-0 border border-gray-200 shadow-sm reveal texture-bg rounded-sm" 
+                 style="animation-delay: 100ms;"
+                 onclick="trackProductClick('زيت أركان للتجميل', 280)">
+                <div class="h-56 bg-yellow-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative group">
+                    <i class="fas fa-bottle-droplet text-7xl text-yellow-700/80 group-hover:scale-110 transition-transform duration-500"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-gray-800">زيت أركان للتجميل</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">زيت أركان نقي 100%، معصور على البارد. سيروم طبيعي لشباب البشرة وقوة الشعر.</p>
+                    <div class="flex justify-between items-end border-t border-dashed border-gray-300 pt-4">
                         <div>
-                            <h4 class="font-bold text-xl mb-1">كسكس سبع خضاري</h4>
-                            <p class="font-sans text-gray-500 text-sm">سميد رقيق، خضار موسمية طازجة.</p>
+                            <span class="block text-xs text-gray-400 mb-1">الثمن</span>
+                            <span class="font-heading font-bold text-2xl text-clay">280 <span class="text-sm text-gray-500 font-body">د.م</span></span>
                         </div>
-                        <span class="font-bold text-xl mr-4 whitespace-nowrap">60 د.م</span>
+                        <a href="https://wa.me/212601156422?text=بغيت زيت أركان الفاخر" 
+                           onclick="trackWhatsAppOrder('زيت أركان')" 
+                           class="bg-clay text-white px-6 py-2 font-bold hover:bg-gold transition-colors rounded-sm text-sm">
+                            أطلب الآن
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <button class="w-full bg-clay text-white font-sans font-bold py-4 rounded-lg hover:bg-gold transition duration-300">
-                حجز طاولة عبر واتساب
-            </button>
+            <!-- PRODUCT 3: KHLEEA -->
+            <div class="product-card bg-white p-0 border border-gray-200 shadow-sm reveal texture-bg rounded-sm" 
+                 style="animation-delay: 200ms;"
+                 onclick="trackProductClick('الخليع الفاسي', 160)">
+                <div class="h-56 bg-red-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative group">
+                    <i class="fas fa-bowl-food text-7xl text-red-800/80 group-hover:scale-110 transition-transform duration-500"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-gray-800">الخليع الفاسي</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">الخليع محضر بالطريقة التقليدية مع زيت الزيتون والتوابل الأصيلة. مذاق لا يقاوم.</p>
+                    <div class="flex justify-between items-end border-t border-dashed border-gray-300 pt-4">
+                        <div>
+                            <span class="block text-xs text-gray-400 mb-1">الثمن</span>
+                            <span class="font-heading font-bold text-2xl text-clay">160 <span class="text-sm text-gray-500 font-body">د.م</span></span>
+                        </div>
+                        <a href="https://wa.me/212601156422?text=بغيت الخليع" 
+                           onclick="trackWhatsAppOrder('الخليع')" 
+                           class="bg-clay text-white px-6 py-2 font-bold hover:bg-gold transition-colors rounded-sm text-sm">
+                            أطلب الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT 4: SANOUJ -->
+            <div class="product-card bg-white p-0 border border-gray-200 shadow-sm reveal texture-bg rounded-sm" 
+                 style="animation-delay: 300ms;"
+                 onclick="trackProductClick('سانوج (حبة البركة)', 85)">
+                <div class="h-56 bg-slate-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative group">
+                    <i class="fas fa-seedling text-7xl text-slate-700/80 group-hover:scale-110 transition-transform duration-500"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-gray-800">سانوج (حبة البركة)</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">حبوب السانوج البلدية. نقية ومنقية باليد. صيدلية طبيعية في منزلك.</p>
+                    <div class="flex justify-between items-end border-t border-dashed border-gray-300 pt-4">
+                        <div>
+                            <span class="block text-xs text-gray-400 mb-1">الثمن</span>
+                            <span class="font-heading font-bold text-2xl text-clay">85 <span class="text-sm text-gray-500 font-body">د.م</span></span>
+                        </div>
+                        <a href="https://wa.me/212601156422?text=بغيت السانوج" class="bg-clay text-white px-6 py-2 font-bold hover:bg-gold transition-colors rounded-sm text-sm">
+                            أطلب الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT 5: SAFFRON -->
+            <div class="product-card bg-white p-0 border border-gray-200 shadow-sm reveal texture-bg rounded-sm" 
+                 style="animation-delay: 400ms;"
+                 onclick="trackProductClick('زعفران تاليوين', 420)">
+                <div class="h-56 bg-purple-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative group">
+                    <i class="fas fa-fan text-7xl text-purple-700/80 group-hover:scale-110 transition-transform duration-500"></i>
+                    <div class="absolute top-4 left-4 bg-gold text-white text-xs px-2 py-1 font-bold rounded-sm">الذهب الأحمر</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-gray-800">زعفران تاليوين</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">زعفران حر شعرة شعرة من تاليوين. نكهة قوية وجودة تصدير عالمية.</p>
+                    <div class="flex justify-between items-end border-t border-dashed border-gray-300 pt-4">
+                        <div>
+                            <span class="block text-xs text-gray-400 mb-1">الثمن (2غ)</span>
+                            <span class="font-heading font-bold text-2xl text-clay">420 <span class="text-sm text-gray-500 font-body">د.م</span></span>
+                        </div>
+                        <a href="https://wa.me/212601156422?text=بغيت الزعفران" class="bg-clay text-white px-6 py-2 font-bold hover:bg-gold transition-colors rounded-sm text-sm">
+                            أطلب الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT 6: BUTTER -->
+            <div class="product-card bg-white p-0 border border-gray-200 shadow-sm reveal texture-bg rounded-sm" 
+                 style="animation-delay: 500ms;"
+                 onclick="trackProductClick('الزبدة البلدية', 95)">
+                <div class="h-56 bg-yellow-100/50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative group">
+                    <i class="fas fa-cube text-7xl text-yellow-500/80 group-hover:scale-110 transition-transform duration-500"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-gray-800">الزبدة البلدية</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">زبدة ديال العروبية، طرية ومملحة خفيف. مثالية للفطور والمسمن.</p>
+                    <div class="flex justify-between items-end border-t border-dashed border-gray-300 pt-4">
+                        <div>
+                            <span class="block text-xs text-gray-400 mb-1">الثمن</span>
+                            <span class="font-heading font-bold text-2xl text-clay">95 <span class="text-sm text-gray-500 font-body">د.م</span></span>
+                        </div>
+                        <a href="https://wa.me/212601156422?text=بغيت الزبدة البلدية" class="bg-clay text-white px-6 py-2 font-bold hover:bg-gold transition-colors rounded-sm text-sm">
+                            أطلب الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
+    <section class="relative z-10 bg-white py-24">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="font-heading text-4xl font-bold text-center mb-16 text-clay">آراء الزبناء الكرام</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-sand p-8 border border-gray-200 hover:border-gold transition-colors reveal rounded-sm">
+                    <div class="text-gold text-xs mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">"تبارك الله عليكم، الزعفران حر والسيد لي وصل ليا كان محترم جداً."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-clay/10 rounded-full flex items-center justify-center text-clay font-bold">ف</div>
+                        <div>
+                            <p class="font-bold text-sm">فاطمة الزهراء</p>
+                            <p class="text-xs text-gray-500">الدار البيضاء</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-sand p-8 border border-gray-200 hover:border-gold transition-colors reveal rounded-sm" style="animation-delay: 100ms;">
+                    <div class="text-gold text-xs mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">"الزيت ديال أركان فنة، كتبان النتيجة من أول سيمانة. شكراً بزاف!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-clay/10 rounded-full flex items-center justify-center text-clay font-bold">م</div>
+                        <div>
+                            <p class="font-bold text-sm">مريم</p>
+                            <p class="text-xs text-gray-500">طنجة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-sand p-8 border border-gray-200 hover:border-gold transition-colors reveal rounded-sm" style="animation-delay: 200ms;">
+                    <div class="text-gold text-xs mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">"تعامل راقي ومنتجات في المستوى. الخليع جا بنين بزاف مع البيض."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-clay/10 rounded-full flex items-center justify-center text-clay font-bold">ك</div>
+                        <div>
+                            <p class="font-bold text-sm">كريم</p>
+                            <p class="text-xs text-gray-500">الرباط</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="relative z-10 bg-clay text-white py-20 text-center">
+        <h3 class="font-heading text-4xl mb-6">بغيتي تعرف كثر؟</h3>
+        <p class="text-white/70 mb-8 max-w-lg mx-auto">فريقنا رهن إشارتك للإجابة على جميع استفساراتك حول منتجاتنا وطرق التوصيل</p>
+        <a href="https://wa.me/212601156422?text=السلام عليكم، بغيت معلومات عن المنتجات" class="inline-flex items-center gap-2 bg-green-600 text-white font-bold px-8 py-4 hover:bg-green-700 transition-colors rounded-sm text-lg border border-green-500/50 shadow-lg">
+            <span>تواصل معنا عبر واتساب</span>
+            <i class="fab fa-whatsapp text-xl"></i> 
+        </a>
+        <div class="mt-16 text-xs text-white/40 border-t border-white/10 pt-8 w-1/2 mx-auto">
+            © 2024 مغاربي - صنع بحب في المغرب
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
