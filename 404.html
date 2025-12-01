@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة غير موجودة - WebExp</title>
+    <title>404 - الصفحة غير موجودة</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
-    <div class="text-center px-4">
-        <div class="mb-8">
-            <h1 class="text-9xl font-black mb-4 animate-bounce">404</h1>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen overflow-hidden">
+    <div class="text-center px-4 relative">
+        <div class="mb-8 animate-bounce">
+            <h1 class="text-9xl font-black mb-4">404</h1>
             <h2 class="text-4xl font-bold mb-4">الصفحة غير موجودة</h2>
             <p class="text-xl text-gray-400 mb-8">للأسف، الصفحة التي تبحث عنها غير موجودة</p>
         </div>
         
-        <div class="space-y-4">
+        <!-- Easter egg hint -->
+        <div id="hint" style="opacity: 0.3; font-size: 0.8rem; color: #666; margin-bottom: 20px;">
+            💡 Hint: جرب الكود السري (Konami Code) على الصفحة الرئيسية
+        </div>
+
+        <!-- Admin attempt message -->
+        <div id="admin-message" style="display: none; background: #1a1a1a; border: 2px solid #facc15; padding: 20px; margin: 20px 0; border-radius: 10px;">
+            <p style="font-size: 1.2rem; color: #ff6b6b; margin: 10px 0;">🚨 تحاول الوصول للـ Admin؟ 🚨</p>
+            <p style="font-size: 0.95rem; color: #aaa;">للأسف، ما فيش admin panel هنا 😂</p>
+            <p style="font-size: 0.85rem; color: #666;">جاهز للعودة للحقيقة؟</p>
+        </div>
+
+        <div class="space-y-4 mt-12">
             <a href="/" class="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105">
                 العودة للرئيسية
             </a>
@@ -32,10 +44,24 @@
     </div>
 
     <script>
-        // Redirect after 5 seconds if user doesn't click anything
-        setTimeout(() => {
-            // Don't auto-redirect, let user choose
-        }, 5000);
+        // Check if user tried to access admin
+        if (window.location.pathname.includes('admin') || window.location.search.includes('admin')) {
+            document.getElementById('admin-message').style.display = 'block';
+            document.getElementById('hint').style.opacity = '1';
+        }
+
+        // Redirect detection for /admin
+        if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') {
+            setTimeout(() => {
+                const msg = document.getElementById('admin-message');
+                msg.style.display = 'block';
+                msg.innerHTML = `
+                    <p style="font-size: 1.5rem; color: #ff6b6b; margin: 10px 0;">🔐 ADMIN PANEL LOCKED 🔐</p>
+                    <p style="font-size: 1.1rem; color: #facc15; margin: 10px 0;">YOU DIDN'T SAY THE MAGIC WORD! 🪄</p>
+                    <p style="font-size: 0.9rem; color: #aaa;">Go back and try the Konami Code 👀</p>
+                `;
+            }, 300);
+        }
     </script>
 </body>
 </html>

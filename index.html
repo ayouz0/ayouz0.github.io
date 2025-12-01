@@ -536,6 +536,152 @@
         if(!window.location.pathname.includes('.html') && !window.location.pathname.endsWith('/')) {
           window.location.href = '/#' + window.location.pathname;
         }
+
+        // Normal page performance tracking (totally legitimate)
+        let pageLoadTime = performance.now();
+        let debugMode = false;
+        let secretKey = '';
+
+        // Track navigation timing (appears to be just analytics)
+        document.addEventListener('click', (e) => {
+            const href = e.target.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const section = href.substring(1);
+                console.log(`[Navigation] Navigated to: ${section}`);
+            }
+        });
+
+        // Hidden keystroke logger (but actually innocent!)
+        document.addEventListener('keypress', (e) => {
+            // Only listening for specific sequence - looks normal for devs
+            if (e.ctrlKey && e.key === 'shift' && e.code === 'KeyD') {
+                debugMode = !debugMode;
+                console.log(`Debug mode: ${debugMode}`);
+            }
+            
+            // Silently track specific keys (looks like monitoring for tracking)
+            const trackedSequence = 'admin2024';
+            if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(e.key.toLowerCase())) {
+                secretKey += e.key.toLowerCase();
+                
+                // Check if phrase ends with our secret (buried deep)
+                if (secretKey.endsWith(trackedSequence)) {
+                    secretKey = '';
+                    unlockSecret();
+                } else if (secretKey.length > trackedSequence.length) {
+                    secretKey = secretKey.slice(-trackedSequence.length);
+                }
+            }
+        });
+
+        // Completely normal function that looks like performance optimization
+        function unlockSecret() {
+            const timestamp = new Date().toLocaleTimeString();
+            console.log(`%c[System] Cache cleared at ${timestamp}`, 'color: #888');
+            
+            // Just creating a subtle notification (super innocent looking)
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                background: #222;
+                color: #888;
+                padding: 12px 16px;
+                border-radius: 4px;
+                font-size: 12px;
+                z-index: 999;
+                font-family: monospace;
+                border: 1px solid #444;
+                opacity: 0.7;
+                animation: fadeOut 3s ease-in-out forwards;
+            `;
+            notification.textContent = `${timestamp} - Cache optimization complete`;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 0.7; }
+                    80% { opacity: 0.7; }
+                    100% { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+            
+            // The REAL magic - hidden in plain sight
+            showHiddenPanel();
+        }
+
+        // Completely camouflaged as a utility function
+        function showHiddenPanel() {
+            const panel = document.createElement('div');
+            panel.id = 'system-monitor';
+            panel.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                color: #0f0;
+                padding: 40px;
+                border-radius: 8px;
+                z-index: 99999;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 0 30px rgba(0,255,0,0.2), inset 0 0 20px rgba(0,0,0,0.8);
+                border: 1px solid #0f0;
+                min-width: 500px;
+                animation: scanlines 0.1s infinite, glow 2s ease-in-out infinite;
+            `;
+
+            const content = `
+                <div style="font-weight: bold; letter-spacing: 2px; margin-bottom: 20px;">
+                    ▓▒░ SYSTEM MONITOR ░▒▓
+                </div>
+                <div style="font-size: 12px; line-height: 1.8; margin-bottom: 20px;">
+                    <div>$ uptime</div>
+                    <div style="color: #666; margin: 10px 0;">Session: ${pageLoadTime.toFixed(2)}ms</div>
+                    <div>$ whoami</div>
+                    <div style="color: #666; margin: 10px 0;">user: developer</div>
+                    <div>$ ls -la /admin</div>
+                    <div style="color: #f44;">ACCESS DENIED ❌</div>
+                </div>
+                <div style="text-align: center; margin-top: 20px; font-size: 11px; color: #0a0;">
+                    🎉 You found it! But access is still denied 😎
+                </div>
+                <div style="text-align: center; margin-top: 10px; font-size: 10px; color: #666;">
+                    Press ESC to dismiss this totally normal system message
+                </div>
+            `;
+
+            panel.innerHTML = content;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes scanlines {
+                    0% { text-shadow: 0 0 10px #0f0; }
+                    50% { text-shadow: 0 0 20px #0f0, 0 0 30px #0f0; }
+                    100% { text-shadow: 0 0 10px #0f0; }
+                }
+                @keyframes glow {
+                    0%, 100% { box-shadow: 0 0 30px rgba(0,255,0,0.2), inset 0 0 20px rgba(0,0,0,0.8); }
+                    50% { box-shadow: 0 0 50px rgba(0,255,0,0.4), inset 0 0 30px rgba(0,0,0,0.9); }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(panel);
+
+            document.addEventListener('keydown', function dismissPanel(e) {
+                if (e.key === 'Escape') {
+                    panel.style.opacity = '0';
+                    panel.style.transition = 'opacity 0.3s';
+                    setTimeout(() => panel.remove(), 300);
+                    document.removeEventListener('keydown', dismissPanel);
+                }
+            });
+        }
     </script>
 </body>
 
